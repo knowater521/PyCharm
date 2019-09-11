@@ -2,14 +2,21 @@
 #!python3.7
 #!@Author：fuq666@qq.com
 #!Filename:https://www.umei.fun/
+<<<<<<< HEAD
 #网址需开ip代理才能访问
+=======
+
+>>>>>>> 0763efcc184225ea66c8bf6cdbd7c4430a73f1e5
 #部分网页需要登陆账号才可查看
 
 import requests
 import re,os,time,random
 from bs4 import BeautifulSoup
+<<<<<<< HEAD
 from threading import Thread
 from atexit import register
+=======
+>>>>>>> 0763efcc184225ea66c8bf6cdbd7c4430a73f1e5
 
 #url为待爬取页面的网址，url1为图片对应的显示网址，而不是图片本身的网址
 def get_response(url,url1='https://www.umei.fun/'):
@@ -54,6 +61,7 @@ def save(response,path,n):
     with open(path + '{}.jpg'.format(n),'wb') as f:
         f.write(response.content)
 
+<<<<<<< HEAD
 #保存一张图片的流程（用于多线程）
 def everyone(photo_url,path,n):
     response = get_response(photo_url)
@@ -69,6 +77,11 @@ def _main(start_url,path):
     print('准备下载：{}'.format(start_url))
     html = get_response(start_url).text
     # _html(html)
+=======
+def main(start_url,path):
+    print('准备下载：{}'.format(start_url))
+    html = get_response(start_url).text
+>>>>>>> 0763efcc184225ea66c8bf6cdbd7c4430a73f1e5
     title = get_title_page(html)
     if title == '欢迎回来':     #需要登陆的情况
         num_pattern = re.compile(r'.*?(\d+)')
@@ -80,6 +93,7 @@ def _main(start_url,path):
         title = num[0] + ' ' + title
     pages = 1
     path = select_path(path,title)
+<<<<<<< HEAD
     n = 0
     for i in range(1,int(pages)+1):
         #只有一页，所以html可重用
@@ -118,3 +132,54 @@ if __name__ == '__main__':
         path = 'C:\\Users\\15394\\Pictures\\爬虫\\umei'
         print('开始时间：{}'.format(time.ctime()))
         _main(start_url,path)
+=======
+    n = 1
+    for i in range(1,int(pages)+1):
+        url = start_url
+        html = get_response(url).text
+        photo_urls = get_photourl(html)
+        for photo_url in photo_urls:
+            response = get_response(photo_url)
+            save(response,path,n)
+            print('{}已保存'.format(n))
+            for t in range(random.randint(1,3)):
+                time.sleep(t)
+            n += 1
+
+if __name__ == '__main__':
+    start_urls = [
+        'https://www.umei.fun/posts/6609',
+        'https://www.umei.fun/posts/6492',
+        'https://www.umei.fun/posts/6456',
+        'https://www.umei.fun/posts/6328',
+        'https://www.umei.fun/posts/6490',
+        'https://www.umei.fun/posts/7258',
+        'https://www.umei.fun/posts/7259',
+        'https://www.umei.fun/posts/7260',
+        'https://www.umei.fun/posts/7268',
+        'https://www.umei.fun/posts/7265',
+        'https://www.umei.fun/posts/7272',
+        'https://www.umei.fun/posts/7275',
+        'https://www.umei.fun/posts/1',
+        'https://www.umei.fun/posts/27',
+        'https://www.umei.fun/posts/110',
+        'https://www.umei.fun/posts/125',
+        'https://www.umei.fun/posts/179',
+        'https://www.umei.fun/posts/192',
+        'https://www.umei.fun/posts/212',
+        'https://www.umei.fun/posts/265',
+        'https://www.umei.fun/posts/4464',
+        'https://www.umei.fun/posts/4254',
+        'https://www.umei.fun/posts/4643',
+        'https://www.umei.fun/posts/4644',
+        'https://www.umei.fun/posts/4782',
+        'https://www.umei.fun/posts/4783',
+    ]
+    # start_url = start_urls[0]
+    # path = 'C:\\Users\\15394\\Pictures\\爬虫\\umei'
+    # main(start_url, path)
+    for i in start_urls[10:]:
+        start_url = i
+        path = 'C:\\Users\\15394\\Pictures\\爬虫\\umei'
+        main(start_url,path)
+>>>>>>> 0763efcc184225ea66c8bf6cdbd7c4430a73f1e5
