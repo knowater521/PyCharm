@@ -20,6 +20,7 @@ def b(path,l):
             f.write(i)
 
 if __name__ == '__main__':
-    path = 'C:\\Users\\15394\\Desktop\\正则.txt'
+    # path = 'C:\\Users\\15394\\Desktop\\正则.txt'
+    path = '正则.txt'
     generate_txt(path)
     print('Done')

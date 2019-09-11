@@ -1,7 +1,7 @@
 #!-*-coding:utf-8 -*-
 #!python3.7
 #!@Author：fuq666@qq.com
-#!Filename:从Thread派生出一个子类，可以被调用
+#!Filename:从Thread派生出一个子类，用于被调用
 
 import threading
 from time import sleep,ctime
@@ -17,6 +17,6 @@ class MyThread(threading.Thread):
         return self.res
 
     def run(self):
-        print('starting',self.name,'at:',ctime())
+        print('开始',self.name,'于：',ctime())
         self.res = self.func(*self.args)
-        print(self.name,'finisjed at:',ctime())
+        print(self.name,'结束于：',ctime())

@@ -3,7 +3,8 @@
 
 import re
 
-path ='C:\\Users\\15394\\Desktop\\正则.txt'
+# path ='C:\\Users\\15394\\Desktop\\正则.txt'
+path = '正则.txt'
 with open(path,'r') as f:
     txt = f.read()
 
